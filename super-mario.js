@@ -5,6 +5,7 @@ let y = 300;
 // Jump state
 let jumping = false;
 let jumpFrame = 0;
+let direct = "Right";
 
 function setup() {
   createCanvas(600, 400);
@@ -19,6 +20,10 @@ function draw() {
   updateJump();
 
   drawPlayer();
+  if (keyIsDown(65)) moveLeft();
+  
+  if (keyIsDown(68)) moveRight();
+  
 }
 
 // ==================================================
@@ -34,17 +39,27 @@ function jump() {
 function keyPressed() {
   if (key === " ") jump();
   
-  if (key === "a") moveLeft();
-  
-  if (key === "d") moveRight();
+  if (key === "e") dash();
 
 }
 
 function moveRight(){
   x = x+5;
+  direct="Right";
+  
 }
 function moveLeft(){
   x = x-5;
+  direct="Left";
+}
+
+function dash(){
+  if (direct==="Right"){
+    x=x+100
+  }
+  if (direct==="Left"){
+    x=x-100
+  }
 }
 
 // ==================================================
