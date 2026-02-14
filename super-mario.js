@@ -33,9 +33,19 @@ function jump() {
 
 function keyPressed() {
   if (key === " ") jump();
+  
+  if (key === "a") moveLeft();
+  
+  if (key === "d") moveRight();
 
 }
 
+function moveRight(){
+  x = x+5;
+}
+function moveLeft(){
+  x = x-5;
+}
 
 // ==================================================
 // 🧠 JUMP LOGIC
