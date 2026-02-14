@@ -54,11 +54,18 @@ function moveLeft(){
 }
 
 function dash(){
+  let dashing = 0;
   if (direct==="Right"){
-    x=x+100
+    while (dashing <10 ){
+      x=x+10
+      dashing = dashing+1;
+    }
   }
   if (direct==="Left"){
-    x=x-100
+    while (dashing <10 ){
+      x=x-10
+      dashing = dashing+1;
+    }
   }
 }
 
