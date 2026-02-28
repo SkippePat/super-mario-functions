@@ -1,14 +1,35 @@
 // Player position
 let x = 100;
 let y = 300;
+let running;
+let runningLeft;
+let standing;
+let standingLeft;
+let jumpingR;
+let jumpingL;
+
 
 // Jump state
 let jumping = false;
 let jumpFrame = 0;
 let direct = "Right";
+let moving = false
 
 function setup() {
   createCanvas(600, 400);
+  running = loadImage("Running.gif")
+  running.resize(2,2);
+  runningLeft = loadImage("RunningLeft.gif")
+  runningLeft.resize(2,2);
+  standing = loadImage("StandingRight.gif")
+  standing.resize(2,2);
+  standingLeft = loadImage("StandingLeft.gif")
+  standingLeft.resize(2,2);
+  jumpingR = loadImage("JUMPRIGHT.gif")
+  jumpingR.resize(2,2);
+  jumpingL = loadImage("JUMPLEFT.gif")
+  jumpingL.resize(2,2);
+  
 }
 
 function draw() {
@@ -22,7 +43,9 @@ function draw() {
   drawPlayer();
   if (keyIsDown(65)) moveLeft();
   
-  if (keyIsDown(68)) moveRight();
+  else if (keyIsDown(68)) moveRight();
+  
+  else moving = false;
   
 }
 
@@ -46,11 +69,13 @@ function keyPressed() {
 function moveRight(){
   x = x+5;
   direct="Right";
+  moving = true;
   
 }
 function moveLeft(){
   x = x-5;
   direct="Left";
+  moving = true;
 }
 
 function dash(){
@@ -91,6 +116,24 @@ function updateJump() {
 // 🎨 DRAW PLAYER
 // ==================================================
 function drawPlayer() {
-  fill(255, 60, 60);
-  rect(x, y, 40, 40);
+  if (keyIsDown(68)){
+    image(running,x,y-50)
+  }
+  else if (keyIsDown(65)){
+    image(runningLeft,x,y-50)
+  }
+  else if (jumping===true && direct==="Right"){
+      image(jumpingR,x,y-50)
+    }
+  else if (jumping===true && direct==="Left"){
+      image(jumpingL,x,y-50)
+    }
+  else
+    if (direct==="Right"){
+      image(standing,x,y-50)
+    }
+    else{
+      image(standingLeft,x,y-50)
+    }
+  
 }
